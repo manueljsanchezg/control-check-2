@@ -6,7 +6,7 @@ import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.pet.PetType;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -24,6 +24,6 @@ public class OperatingRoom extends BaseEntity {
 
     String description;
 
-    @Transient
+    @ManyToMany
     Set<PetType> validFor;    
 }

@@ -9,7 +9,8 @@ import org.springframework.samples.petclinic.vet.Vet;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.Transient;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -32,9 +33,10 @@ public class Surgery extends BaseEntity {
     @Column(name="surgery_date")
     LocalDate date;
     
-    @Transient
+    @ManyToMany
     Set<Vet> surgeryTeam;  
-      
-    @Transient
+    
+    @ManyToOne
+    @NotNull
     OperatingRoom room;
 }

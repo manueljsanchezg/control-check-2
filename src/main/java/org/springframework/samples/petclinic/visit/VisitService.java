@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
@@ -13,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.clinic.PricingPlan;
 import org.springframework.samples.petclinic.exceptions.ResourceNotFoundException;
+import org.springframework.samples.petclinic.pet.Pet;
+import org.springframework.samples.petclinic.pet.PetType;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -52,7 +55,12 @@ public class VisitService {
 
 	@Transactional
 	public Visit save(Visit visit) throws DataAccessException,UnfeasibleSurgeryException {
-		// TODO Change to implement exercise 8
+		Pet pet = visit.getPet();
+		Set<PetType> recommendedSurgeries = visit.getRecommends().getSusceptiblePetTypes();
+
+		if (!recommendedSurgeries.contains(pet.getType())) {
+			throw new UnfeasibleSurgeryException();
+		}
 		return visitRepository.save(visit);		
 	}
 

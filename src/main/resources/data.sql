@@ -112,3 +112,22 @@ INSERT INTO surgery_type(id, name)
                (2, 'Bladder surgery');
 
 INSERT INTO surgery_type_susceptible_pet_types(surgery_type_id,susceptible_pet_types_id) VALUES (1,1),(1,2),(1,4),(2,1),(2,6);
+
+-- ADDED IN TEST 3
+INSERT INTO operating_room(id,name,description) VALUES (1, 'Sala A', 'Sala de operaciones para perros y gatos');
+INSERT INTO operating_room(id,name,description) VALUES (2, 'Sala B', 'Sala de operaciones para reptiles y tortugas');
+INSERT INTO surgery(id,room_id,surgery_date,name) VALUES (1,1,'2023-12-16','Dental extraction');
+INSERT INTO surgery(id,room_id,surgery_date,name,description) VALUES (2,2,'2023-12-17','Bladder surgery', 'Removal of a bladder stone.');
+
+-- ADDED IN TEST 4
+INSERT INTO pets_surgeries(pet_id,surgeries_id) VALUES (3,1);
+INSERT INTO pets_surgeries(pet_id,surgeries_id) VALUES (1,2);
+INSERT INTO surgery_surgery_team(surgery_id,surgery_team_id) VALUES (1,2);
+INSERT INTO surgery_surgery_team(surgery_id,surgery_team_id) VALUES (1,4);
+INSERT INTO surgery_surgery_team(surgery_id,surgery_team_id) VALUES (2,1);
+INSERT INTO surgery_surgery_team(surgery_id,surgery_team_id) VALUES (2,5);
+INSERT INTO operating_room_valid_for(operating_room_id,valid_for_id) VALUES (1,1);
+INSERT INTO operating_room_valid_for(operating_room_id,valid_for_id) VALUES (1,2);
+INSERT INTO operating_room_valid_for(operating_room_id,valid_for_id) VALUES (2,3);
+INSERT INTO operating_room_valid_for(operating_room_id,valid_for_id) VALUES (2,4);
+INSERT INTO operating_room_valid_for(operating_room_id,valid_for_id) VALUES (2,7);

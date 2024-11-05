@@ -2,18 +2,27 @@ package org.springframework.samples.petclinic.surgery;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
+@Service
 public class SurgeryService {
     SurgeryRepository repo;
 
+    @Autowired
     public SurgeryService(SurgeryRepository sr){
         this.repo=sr;
     }
 
+    @Transactional(readOnly = true)
     public List<Surgery> getAll() {
-        return null;
+        return repo.findAll();
     }
 
+    @Transactional()
     public Surgery save(Surgery s) {
-        return null;
+        return repo.save(s);
     }
 }

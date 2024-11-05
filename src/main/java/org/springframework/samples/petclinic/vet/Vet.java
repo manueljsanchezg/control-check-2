@@ -57,6 +57,4 @@ public class Vet extends Person {
 	@JoinColumn(name = "clinic", referencedColumnName = "id")
 	private Clinic clinic;
 
-	
-
 }

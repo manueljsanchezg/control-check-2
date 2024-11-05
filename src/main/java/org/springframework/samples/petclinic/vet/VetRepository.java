@@ -48,7 +48,14 @@ public interface VetRepository extends CrudRepository<Vet, Integer> {
 
 	// This query is only to avoid problems in the previous tests. You don't have to/shouldn't
 	// use it as a starting point for Test 6
-	@Query("SELECT v FROM Vet v")
+	//@Query("SELECT v FROM Vet v")
+	@Query("SELECT v FROM Vet v JOIN Visit vi ON vi.vet = v " +
+       "JOIN Pet p ON vi.pet = p " +
+       "WHERE p.type IN :type " +
+       "AND vi.datetime > :start " +
+       "AND vi.datetime < :end " +
+       "GROUP BY v " +
+       "HAVING COUNT(vi) >= :threshold")
 	public Set<Vet> findMoreActiveVets(@Param("start") LocalDateTime start, 
 	                                    @Param("end") LocalDateTime end, 
 										@Param("type") Set<PetType> type,
